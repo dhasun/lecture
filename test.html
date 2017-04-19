@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Schedule</title>
+		
+		<!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		
+		<!-- Bootstrap -->
+			<!-- Latest compiled and minified CSS -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+			<!-- Optional theme -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </head>
+	<body>
+		<div class="container">
+			<h2>Create a group </h1>
+			<form class="form-horizontal" method="post" action="http://localhost:8080/lecture/group/create">
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="groupCode">Group code</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="groupCode" required id="groupCode" placeholder="Group code"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="groupDesc">Group description</label>
+					<div class="col-sm-6">
+						<input type="text" name="groupDesc" class="form-control" required id="groupDesc" placeholder="Group description"/>
+					</div>	
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-6">
+						<input type="submit" class="btn btn-default" value="Create Group"/>
+					</div>
+				</div>
+				
+			</form>
+			
+			<hr/>
+			
+			<h2>Create a module </h1>
+			<form class="form-horizontal" method="post" action="http://localhost:8080/lecture/module/create">
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="moduleCode">Module code</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" required name="moduleCode" placeholder="Module code"  />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="moduleName">Module name</label>
+					<div class="col-sm-6">
+						<input type="text"  class="form-control" required name="moduleName" placeholder="Module name"  />
+					</div>	
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="credits">Credits</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" required name="credits" placeholder="Credits"  />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="moduleLeader">Module leader</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" required name="moduleLeader" placeholder="Module leader" /><br>
+					</div>	
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-6">
+						<input type="submit" class="btn btn-default" value="Save Module"/>
+					</div>
+				</div>
+			</form>
+			
+			<hr>
+			
+			<h2>Create a schedule </h1>
+			<form class="form-horizontal" method="post" action="http://localhost:8080/lecture/schedule/create">
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="studentGroup">Student group code</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" name="studentGroup" required placeholder="Student group code"  />
+					</div>	
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="module">Module code</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" name="module" required placeholder="Module code"  />
+					</div>	
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="scheduleStartDateTime">Schedule start date time</label>
+					<div class="col-sm-3">
+						<input type="datetime-local" name="scheduleStartDateTime"   max="1979-12-31" placeholder="Schedule start date time" class="form-control"  required  />
+					</div>	
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="scheduleEndDateTime">Schedule end date time</label>
+					<div class="col-sm-3">
+						<input type="datetime-local" name="scheduleEndDateTime"   max="1979-12-31" placeholder="Schedule end date time" class="form-control"  required  />
+					</div>	
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="remark">Remarks</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" name="remark"  placeholder="Remarks"  />
+					</div>	
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-6">
+						<input type="submit" class="btn btn-default" value="Create Schedule"/>
+					</div>
+				</div>
+			</form>
+			
+			<hr>
+			
+			<h2>Query Schedules </h1>
+			<form class="form-horizontal" method="post" action="http://localhost:8080/lecture/schedule/publish">
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="studentGroup">Student group code</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" name="studentGroup" placeholder="Student group code"  />
+					</div>	
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="module">Module code</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control" name="module" placeholder="Module code"  />
+					</div>	
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="scheduleStartDateTime">Schedule start date time</label>
+					<div class="col-sm-3">
+						<input type="datetime-local" name="scheduleStartDateTime"   max="1979-12-31" placeholder="Schedule start date time" class="form-control" />
+					</div>	
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label" for="scheduleEndDateTime">Schedule end date time</label>
+					<div class="col-sm-3">
+						<input type="datetime-local" name="scheduleEndDateTime"   max="1979-12-31" placeholder="Schedule end date time" class="form-control" />
+					</div>	
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-6">
+						<input type="submit" class="btn btn-default" value="Query Schedules"/>
+					</div>
+				</div>
+			</form>
+			
+			<h2>View all schedules </h1>
+			
+			
+			<div id="scheduleList" class="table-responsive"></div>
+			<br/>
+			<br/>
+			<input type="button" onclick="getAllSchedules();" class="btn btn-primary" value="View Schedule"/>
+			<br/>
+			<br/>
+			<br/>
+		</div>	
+	</body>
+	
+	<script>
+		
+		/**
+			Gets all the schedules from the database
+		**/
+		function getAllSchedules(){
+			$.ajax({
+				type : 'POST',
+				dataType: 'json',
+				contentType : 'application/json',
+				url:'http://localhost:8080/lecture/schedule/publish?studentGroup=&module=&scheduleStartDateTime=&scheduleEndDateTime=',
+				
+				success: function(result){
+				   var schedules = result.schedules;
+				   var count	 = result.count;
+				   
+				   var innerHtml = "<table class='table table-striped table-condensed'><tr><th>#</th><th>Module code</th><th>Module name</th><th>Group code</th><th>Start date time</th><th>End date time</th><th>Remarks</th><th></th><th></th></tr>";
+				   for(i=0 ; i < count ; i++){
+						innerHtml += "<tr>";
+							innerHtml += "<td> "+(i+1)+"</td>";
+						var schedule = schedules[i];
+						var id = schedule.id;
+						var modCode = schedule.mod_code;
+							innerHtml += "<td> <input id='txtModCode"+id+"' type='text' value='"+modCode+"'/></td>";
+						var modName = schedule.mod_name;
+							innerHtml += "<td> <textarea class='form-control' style='width: 150px;' readonly id='txtModName"+id+"' rows='3'>"+modName+"</textarea></td>";
+						var grpCode = schedule.grp_code;
+							innerHtml += "<td> <input id='txtGrp"+id+"' type='text' value='"+grpCode+"'/></td>";
+						var startDt = schedule.start_dt;
+							innerHtml += "<td> <input id='txtStartDt"+id+"' type='datetime-local' value='"+startDt+"'/></td>";
+						var endDt 	= schedule.end_dt;
+							innerHtml += "<td> <input id='txtEndDt"+id+"' type='datetime-local' value='"+endDt+"'/></td>";								
+						var remark = schedule.remark;
+							remark = (remark === undefined || remark === null) ? "" : remark;
+							innerHtml += "<td> <input id='txtRemark"+id+"' type='text' value='"+remark+"'/></td>";
+						
+							innerHtml += "<td> <input id='"+id+"'class='btn btn-warning btn-xs' onclick='changeSchedule(this.id)' type='button' value='Change'/></td>";
+							innerHtml += "<td> <input  class='btn btn-danger btn-xs' onclick='deleteSchedule("+id+")' type='button' value='Delete'/></td>";
+						
+						innerHtml += "</tr>";
+				   }
+				   innerHtml += "</table>";
+				   
+				   if(count == 0){
+					 innerHtml = "<div class='alert alert-info' role='alert'><strong>Oops! </strong>There are no schedules to display! Seems like you have to create new schedules.</div>";
+				   }
+				   
+				   $('#scheduleList').html(innerHtml);
+				  
+				},
+				error: function(result){
+					alert(JSON.stringify(result));
+				}
+			});
+		}
+		
+		/**
+			Changes the schedule
+		**/
+		function changeSchedule(id){
+		
+			var modCode = $('#txtModCode'+id).val();
+			var modName = $('#txtModName'+id).val();
+			var grpCode = $('#txtGrp'+id).val();
+			var startDt = $('#txtStartDt'+id).val();
+			var endDt   = $('#txtEndDt'+id).val();
+			var remark  = $('#txtRemark'+id).val();
+			
+			$.ajax({
+				type : 'POST',
+				dataType: 'json',
+				contentType : 'application/json',
+				url:'http://localhost:8080/lecture/schedule/update?scheduleId='+id+'&studentGroup='+grpCode+'&module='+modCode+'&scheduleStartDateTime='+startDt+'&scheduleEndDateTime='+endDt+'&remark='+remark,
+				
+				success: function(result,textStatus, xhr){   
+					getAllSchedules();
+					
+				},
+				error: function(result){
+					alert(JSON.stringify(result));
+				}
+			});
+		}
+		
+		/**
+			Deletes a schedule
+		**/
+		function deleteSchedule(id){
+		
+			$.ajax({
+				type : 'POST',
+				dataType: 'json',
+				contentType : 'application/json',
+				url:'http://localhost:8080/lecture/schedule/delete?scheduleId='+id,
+				
+				success: function(result,textStatus, xhr){   
+					getAllSchedules();
+					
+				},
+				error: function(result){
+					alert(JSON.stringify(result));
+				}
+			});
+		}
+
+	</script>
+	
+</html>
