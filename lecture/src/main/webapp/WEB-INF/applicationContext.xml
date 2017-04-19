@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+		xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+						    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+						    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+						    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<context:component-scan base-package="com.gadreel.lecture.schedule.service" />
+	<mvc:annotation-driven />
+	
+	<!-- Data source configuration -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/lecture" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+	
+	
+	<!-- Hibernate configuration stuffs -->
+	<bean id="hibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop><!-- create --><!-- update -->
+			</props>
+		</property>	
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.gadreel.lecture.schedule.domain.StudentGroup</value>
+				<value>com.gadreel.lecture.schedule.domain.Module</value>
+				<value>com.gadreel.lecture.schedule.domain.Schedule</value>
+			</list>
+		</property>
+		<property name="hibernateProperties" ref="hibernateProperties"></property>
+		<property name="annotatedPackages">
+			<list>
+				<value>com.gadreel.lecture.schedule.domain</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+		
+	<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	<!-- Creating individual DAO -->
+	<bean id="studentGroupDao" 	class="com.gadreel.lecture.schedule.dao.impl.StudentGroupDaoImpl"></bean>
+	<bean id="moduleDao" 		class="com.gadreel.lecture.schedule.dao.impl.ModuleDaoImpl"></bean>
+	<bean id="scheduleDao" 		class="com.gadreel.lecture.schedule.dao.impl.ScheduleDaoImpl"></bean>
+	
+	<!-- Creating individual BD -->
+	<bean id="studentGroupBd" 	class="com.gadreel.lecture.schedule.bd.impl.StudentGroupBdImpl"></bean>
+	<bean id="moduleBd" 		class="com.gadreel.lecture.schedule.bd.impl.ModuleBdImpl"></bean>
+	<bean id="scheduleBd" 		class="com.gadreel.lecture.schedule.bd.impl.ScheduleBdImpl"></bean>
+	
+	<!-- Hibernate support -->
+	<bean id="hibernateSupport" class="com.gadreel.lecture.schedule.hibernate.support.HibernateSupport"></bean>
+
+</beans>
+	
